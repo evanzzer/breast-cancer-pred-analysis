@@ -114,18 +114,12 @@ AdaBoost Algorithm merupakan model yang akan meningkatkan akurasi model secara i
 ## Evaluation
 Hasil pemodelan yang dijalankan dengan tiga algoritma tersebut dapat divisualisasi pada gambar di bawah ini.
 
+![image](https://user-images.githubusercontent.com/56476347/185201163-a8329a98-fd77-42fa-aeeb-1fa8ea763e74.png)
 
+Metrik yang digunakan merupakan pendekatan accuracy karena model ini melakukan prediksi binary classification apakah dengan fitur-fitur yang dispesifikasikan dapat dikategorikan menjadi kanker payudara atau tidak. Metrik akurasi didapatkan dengan menghitung jumlah data yang berhasil diprediksi dengan benar dan dibagi dengan jumlah total dari data yang tersedia. Karena hasil model memiliki output dari rentang 0 hingga 1 dalam format desimal, maka output tersebut akan dibulatkan menjadi nilai integer 0 dan 1, yaitu *Benign* atau *Malignant*
 
+Hasil visualisasi ini diurutkan dari yang paling terkecil akurasinya hingga yang paling besar akurasi test set nya. Untuk algoritma KNN, didapatkan train accuracy sebesar 94.26% dan test accuracy sebesar 96.04%. Algoritma RandomForest didapatkan train accuracy sebesar 99% dan test accuracy sebesar 95.05%. Algoritma AdaBoost memiliki train accuracy sebesar 97.76% dan test accuracy sebesar 97.03%. 
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
-
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+Dari hasil tersebut, dapat disimpulkan bahwa algoritma AdaBoost merupakan model terbaik berdasarkan test set yang telah diuji. Ujicoba secara manual dengan mengambil sampling dari 10 data secara acak menyimpulkan bahwa model KNN dan AdaBoost memprediksi 9 dari 10 data secara benar, dan algoritma RandomForest memprediksikan 8 dari 10 data secara benar, sesuai dengan nilai akurasi yang telah didapatkan. 
 
 **---Ini adalah bagian akhir laporan---**
-
-
