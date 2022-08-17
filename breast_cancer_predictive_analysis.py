@@ -182,7 +182,7 @@ plt.title("Correlation Matrix untuk Fitur Numeric", size="20")
 - `radius_mean`, `perimeter_mean`, and `area_mean` are highly correlated to each other
 - `compactness_mean`, `concavity_mean`, and `concave points_mean` are highly correlated to each other.
 - `concavity_mean` and `concave points_mean` are correlated with `radius_mean`
-- `fractal_dimension_mean` is the most least correlated with `target`
+- `fractal_dimension_mean` is the most least correlated with `diagnosis`
 
 Since `fractal_dimension_mean` is the least correlated with target`, this can be removed.
 """
