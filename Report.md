@@ -79,20 +79,43 @@ Proses selanjutnya adalah mendeteksi outliers. Tujuan mendeteksi outliers adalah
 
 ![image](https://user-images.githubusercontent.com/56476347/185194462-cb443936-dcdf-4e08-9344-4ab6b592f547.png)
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Dari gambar di atas, terdapat outliers yang sangat banyak, ditandai dengan gambar bulat di sebelah kanan. Untuk itu, perlu dilakukan pembersihan data dari outliers. Untuk itu, metode Inter Quartile Range digunakan untuk membersihkan data tersebut. Hasil pembersihan outliers menyisahkan 502 dataset yang dapat digunakan untuk melakukan pemodelan. Jika dijalankan fungsi `boxplot()` kembali, maka hasilnya adalah sebagai berikut.
+
+![image](https://user-images.githubusercontent.com/56476347/185195006-82b9648f-334f-4807-a2ec-4981f0e1bc0f.png)
+
+Masih terdapat outliers, namun sudah lebih sedikit daripada sebelumnya. Selanjutnya, dataset akan diuji korelasinya antar fitur dengan menggunakan fungsi `heatmap()` dari library `seaborn`. Korelasi ini penting dilakukan untuk menemukan seberapa erat hubungan fitur dengan label yang menjadi output dari model, yaitu `diagnosis`. Matrix kolerasi yang didapatkan dapat terlihat pada gambar di bawah ini.
+
+![image](https://user-images.githubusercontent.com/56476347/185195305-64caab43-d37e-4e15-9c39-ebd2255ec26b.png)
+
+Korelasi ini dapat terlihat bahwa:
+- Fitur `texture_mean` memiliki korelasi yang paling kecil dengan fitur lainnya
+- Fitur `radius_mean`, `perimeter_mean`, dan `area_mean` saling berkaitan erat satu dengan yang lainnya.
+- Fitur `compactness_mean`, `concavity_mean`, dan `concave points_mean` saling berkaitan satu dengan lainnya.
+- Fitur `concavity_mean` dan `concave points_mean` ada kaitannya dengan fitur `radius_mean`
+- Fitur `fractal_dimension_mean` memiliki kaitan yang bersifat negatif dan lemah terhadap `diagnosis` sehingga fitur tersebut dapat dihilangkan dan tidak diikutsertakan dalam model.
+
+Karena fitur `radius_mean`, `perimeter_mean`, dan `area_mean` saling berkaitan erat satu dengan yang lainnya, maka ketiga fitur tersebut dapat digabungkan menjadi satu fitur baru bernama `measurement_mean` dengan menggunakan Principal Component Analysis atau PCA. Hasil pengujian menyatakan bahwa fitur `radius_mean` dapat mendeskripsikan fitur `perimeter_mean` dan `area_mean` dengan nilai rasio 1:0:0. Hal ini karena secara rumus matematis, nilai `perimeter_mean` dan `area_mean` dihitung dari variabel `radius_mean`.
+
+Setelah penggabungan fitur, maka dataset dapat dibagi menjadi train set dan test set dengan rasio antara keduanya adalah 8:2. Pembagian ini dapat dilakukan dengan mudah dengan menggunakan fungsi `train_test_split()` dari library `sklearn`. Hasil pembagiannya adalah train set terdiri dari 401 data dan test set terdiri dari 101 data. Selanjutnya, fitur-fitur tersebut dilakukan standarisasi untuk memudahkan model merumuskan algoritmanya yang akan digunakan. Cukup dengan memanggil class `StandardScaler()` dari library `sklearn` dapat mentransformasikan seluruh fitur sehingga setiap fitur memiliki rata-rata sebesar 0 dengan standar deviasi sebesar 1.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Algoritma pemodelan yang akan digunakan merupakan K-Nearest Neighbor, RandomForest, dan AdaBoost.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+#### K-Nearest Neighbor
+K-Nearest Neighbor merupakan sebuah algoritma yang mengukur jarak antara titk dengan titik lainnya dengan mengambil sejumlah titik terdekat yang telah ditentukan. Algoritma ini sederhana, namun akan menjadi masalah ketika fitur yang diuji sangat banyak. Parameter yang digunakan pada algoritma ini adalah `k = 10`, yaitu mengambil 10 titik terdekat. Se
+Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan. Metrik yang digunakan adalah metrik Minkowski dengan `p = 2`. Metrik ini sama dengan metrik Euclidean, dengan parameter `p` yang dapat diubah sesuai kebutuhan.
+
+#### RandomForest
+RandomForest merupakan sebuah algoritma yang merupakan model yang di dalamnya terdapat model-model yang bekerja secara bersamaan seperti model Decision Tree. Ibaratnya sebuah bagian yang kecil menyelesaikan pekerjaannya, dan bagian-bagian tersebut dikumpulkan hasilnya untuk memperoleh prediksi akhir. Parameter yang digunakan adalah `n_estimator = 20` yang artinya terdapat 20 pohon yang akan disediakan, dengan `max_depth = 16` yang artinya pembelahan maksimal dari sebuah pohon adalah 16 kali. Parameter `random_state = 55` mengatur *random number generator* yang digunakan, dan `n_jobs = -1` artinya seluruh proses akan berjalan secara paralel.
+
+#### AdaBoost Algorithm
+AdaBoost Algorithm merupakan model yang akan meningkatkan akurasi model secara iteratif. Algoritma ini akan terus dilatih hingga mencapai akurasi terbaik atau telah mencapai iterasi maksimum. Parameter-parameter yang digunakan meliputi `learning_rate = 0.05` yang merupakan bobot yang diterapkan untuk setiap regresi pada masing-masing iterasi yang dijalankan, serta `random_state = 55` untuk mengatur *random number generator* yang digunakan.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
+Hasil pemodelan yang dijalankan dengan tiga algoritma tersebut dapat divisualisasi pada gambar di bawah ini.
+
+
+
 
 Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
 - Penjelasan mengenai metrik yang digunakan
@@ -104,9 +127,5 @@ Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, probl
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
 
 **---Ini adalah bagian akhir laporan---**
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
 
 
