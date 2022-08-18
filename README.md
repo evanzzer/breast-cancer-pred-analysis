@@ -6,12 +6,7 @@ Kanker payudara merupakan kanker yang sering ditemukan dan terjadi dalam kalanga
 
 Oleh karena itu, untuk melakukan identifikasi apakah seorang wanita yang menderita tumor pada bagian payudara adalah kanker atau tidak, tumor tersebut diidentifikasikan dan diklasifikasikan berdasarkan spesifikasi tertentu. Sebuah tumor dapat dikatakan sebagai *Malignant* atau kanker bila sel-sel tumor dapat tumbuh dan merambat ke sekitar tisu atau area yang dapat dijangkau dalam tubuh. Sebuah tumor dapat dikatakan *Benign* ketika tumor tidak menyerang tisu sekitar atau menyebar ke bagian tubuh lainnya seperti hal yang dilakukan oleh kanker. 
 
-Klasifikasi dengan menggunakan Machine Learning ini sangat penting karena hal ini menyangkut apakah seseorang dapat bertahan hidup setelah mengidap tumor tersebut. Semakin cepat penanganannya, maka tingkat seseorang dapat bertahan hidup akan lebih tinggi. Setiap nyawa sangat berharga dan jika pengklasifikasian ini ternyata dapat membantu untuk mengkategorikannya, ditambah dengan penanganan yang tepat, maka dengan algoritma ini dapat menyelamatkan nyawa-nyawa.
-  
-Referensi:
-- [Kaggle Dataset](https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset)
-- [ML Project: Breast Cancer Detection Using Machine Learning Classifier](https://indianaiproduction.com/breast-cancer-detection-using-machine-learning-classifier/)
-- [Classification of Breast Cancer](https://muditkapoor01.medium.com/classification-of-breast-cancer-82d0058f3d35)
+Klasifikasi dengan menggunakan Machine Learning ini sangat penting karena hal ini menyangkut apakah seseorang dapat bertahan hidup setelah mengidap tumor tersebut. Semakin cepat penanganannya, maka tingkat seseorang dapat bertahan hidup akan lebih tinggi. Setiap nyawa sangat berharga dan jika pengklasifikasian ini ternyata dapat membantu untuk mengkategorikannya, ditambah dengan penanganan yang tepat, maka dengan algoritma ini dapat mendeteksi kanker secara dini.
 
 ## Business Understanding
 
@@ -120,5 +115,10 @@ Metrik yang digunakan merupakan pendekatan accuracy karena model ini melakukan p
 Hasil visualisasi ini diurutkan dari yang paling terkecil akurasinya hingga yang paling besar akurasi test set nya. Untuk algoritma KNN, didapatkan train accuracy sebesar 94.26% dan test accuracy sebesar 96.04%. Algoritma RandomForest didapatkan train accuracy sebesar 99% dan test accuracy sebesar 95.05%. Algoritma AdaBoost memiliki train accuracy sebesar 97.76% dan test accuracy sebesar 97.03%. 
 
 Dari hasil tersebut, dapat disimpulkan bahwa algoritma AdaBoost merupakan model terbaik berdasarkan test set yang telah diuji. Ujicoba secara manual dengan mengambil sampling dari 10 data secara acak menyimpulkan bahwa model KNN dan AdaBoost memprediksi 9 dari 10 data secara benar, dan algoritma RandomForest memprediksikan 8 dari 10 data secara benar, sesuai dengan nilai akurasi yang telah didapatkan. 
+
+**Referensi:**
+- [Kaggle Dataset](https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset)
+- [ML Project: Breast Cancer Detection Using Machine Learning Classifier](https://indianaiproduction.com/breast-cancer-detection-using-machine-learning-classifier/)
+- [Classification of Breast Cancer](https://muditkapoor01.medium.com/classification-of-breast-cancer-82d0058f3d35)
 
 **---Ini adalah bagian akhir laporan---**
