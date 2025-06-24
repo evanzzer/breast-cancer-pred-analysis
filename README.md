@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Evans Hebert
+# Laporan Proyek Machine Learning
 
 ## Domain Proyek
 
